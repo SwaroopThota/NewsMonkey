@@ -3,7 +3,7 @@ import React from 'react'
 function NewsCard({ article, mode }) {
     return (
         <div className={`card col-lg-4 col-md-6 my-4 bg-${mode} ${mode==='light'?'':'border-secondary'}`}>
-            <img src={!article.urlToImage?'https://c.ndtvimg.com/2021-12/j294i3h_haridwar-hate-speech_625x300_29_December_21.jpg':article.urlToImage} className="card-img-top" alt="..." />
+            <img src={!article.urlToImage?'https://yt3.ggpht.com/ytc/AKedOLQisbiXxC546al_Q-Ip6UhPBa7xfAnhAY5aJGePkg=s900-c-k-c0x00ffffff-no-rj':article.urlToImage} className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{article.title}</h5>
                 <p className="card-text">{article.description}</p>

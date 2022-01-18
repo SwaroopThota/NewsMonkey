@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 function Navbar(props) {
   return (
-    <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} px-2`}>
+    <nav className={`navbar navbar-expand-lg sticky-top navbar-${props.mode} bg-${props.mode} px-2`}>
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">OnlyNews</Link>
         <button
