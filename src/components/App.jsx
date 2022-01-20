@@ -5,6 +5,7 @@ import News from "./News";
  const App = ()=>{
     const catagories = ["","business","entertainment","health","science","sports","technology"];
     const [mode, setMode] = useState('light');
+    const apiAvailable = false;
     const toggleMode = ()=>{
       if(mode === 'light'){
         setMode('dark');
@@ -25,7 +26,7 @@ import News from "./News";
               catagories.map(
                 (elem) => {
                   return (<Route exact path={`/${elem}`} 
-                  element={ <News catagory={elem} key={elem} mode={mode}/> } key={elem} />);
+                  element={ <News catagory={elem} key={elem} mode={mode} apiAvailable={apiAvailable}/> } key={elem} />);
                 }
               )
             }

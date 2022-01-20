@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import NewsContainer from "./NewsContainer";
 import InfiniteScroll from "react-infinite-scroll-component";
+import news from "../static data.js";
 
 const News = (props) => {
   const apiKey = process.env.REACT_APP_API_KEY;
@@ -18,10 +19,15 @@ const News = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const fetchData = async () => {
-    const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.catagory}&apiKey=${apiKey}&pageSize=12&page=${page}`;
-    setPage(page + 1);
-    let data = await fetch(url);
-    let parsedData = await data.json();
+    let parsedData = {};
+    if(props.apiAvailable){
+      const url = `https://newsapi.org/v2/top-headlines?country=in&category=${props.catagory}&apiKey=${apiKey}&pageSize=12&page=${page}`;
+      setPage(page + 1);
+      let data = await fetch(url);
+      parsedData = await data.json();
+    }else{
+      parsedData = news[`${props.catagory}`];
+    }
     if(parsedData.articles){
       setArticles(articles.concat(parsedData.articles));
       setTotalResults(parsedData.totalResults);
@@ -39,7 +45,7 @@ const News = (props) => {
       <InfiniteScroll
         dataLength={articles.length}
         next={fetchData}
-        hasMore={articles.length !== totalResults}
+        hasMore={articles.length < totalResults}
         loader={<LoadingSpinner mode={props.mode}/>}
       >
         {loading ? <LoadingSpinner mode={props.mode}/> : <NewsContainer articles={articles} mode={props.mode}/>}
