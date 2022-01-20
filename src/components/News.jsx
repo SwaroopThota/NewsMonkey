@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import NewsContainer from "./NewsContainer";
 import InfiniteScroll from "react-infinite-scroll-component";
-import news from "../../public/static data.js";
+import news from "../static data.js";
 
 const News = (props) => {
   const apiKey = process.env.REACT_APP_API_KEY;
